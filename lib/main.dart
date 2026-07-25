@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taski/screens/login_screen.dart';
+import 'package:taski/screens/signup_screen.dart';
 // import 'package:planner/screens/login_screen.dart';
 // import 'package:planner/screens/onboarding_screen.dart';
 // import 'package:planner/screens/signup_screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Taski App',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: SignupScreen(),
     );
   }
 }
