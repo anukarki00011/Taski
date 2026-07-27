@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,45 +21,42 @@ class SignupScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40),
-              Text(
-                'Sign Up',
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Sign Up',
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Image.asset(
                 'assets/app_logo.png',
                 fit: BoxFit.contain,
                 width: double.infinity,
-                height: 120,
+                height: 100,
               ),
               SizedBox(height: 27),
-              Text('Welcome Back'),
+              Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 5),
-              Text('Please enter your details to continue'),
-              SizedBox(height: 30),
+              Text(
+                'Please enter your details to continue',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(height: 28),
               Text('Name'),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Enter your name',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.purple),
-                  ),
-                ),
+              CustomTextField(
+                controller: _nameController,
+                hintText: 'enter your name ',
               ),
               SizedBox(height: 20),
               Text('Email'),
@@ -60,22 +64,26 @@ class SignupScreen extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   hintText: 'Enter your email',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.red),
+                  hintStyle: TextStyle(color: Color(0xff8897Ad)),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.purple),
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff1d4ae9)),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
                   ),
                 ),
               ),
@@ -84,23 +92,27 @@ class SignupScreen extends StatelessWidget {
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'Enter your password',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
+                  hintText: 'Please enter your password',
+                  hintStyle: TextStyle(color: Color(0xff8897Ad)),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff1d4ae9)),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Colors.red),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Colors.red),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.purple),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
                   ),
                 ),
               ),
@@ -109,50 +121,56 @@ class SignupScreen extends StatelessWidget {
               SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'Enter your password',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
+                  hintText: 'Confirm your password',
+                  hintStyle: TextStyle(color: Color(0xff8897Ad)),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff1d4ae9)),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Colors.red),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                     borderSide: BorderSide(color: Colors.red),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.purple),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(color: Color(0xff8897Ad)),
                   ),
                 ),
               ),
               SizedBox(height: 20),
-              GestureDetector(
-                child: Container(
-                  width: double.infinity,
-                  height: 40,
-                  child: Center(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+              Container(
+                width: double.infinity,
+                height: 40,
+                child: Center(
+                  child: Text(
+                    'Sign Up',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      // color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Color(0xff162d3a),
-                  ),
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.blueAccent,
                 ),
               ),
-              SizedBox(height: 27),
+              SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(" Already have an account?"),
+                  Text(" Don't have an account?"),
                   Text(
-                    ' Sign In',
+                    ' Sign Up',
                     style: TextStyle(
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.w700,
@@ -160,11 +178,52 @@ class SignupScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({super.key, this.controller, this.hintText});
+  final TextEditingController? controller;
+  final String? hintText;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: TextStyle(color: Color(0xff8897Ad)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Color(0xff8897Ad)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Color(0xff1d4ae9)),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.red),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Color(0xff8897Ad)),
+        ),
+      ),
+      validator: (name) {
+        if (name!.isEmpty) {
+          return 'Please enter your name';
+        }
+        return null;
+      },
     );
   }
 }
