@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'login_screen.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
@@ -56,66 +58,48 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(height: 10),
               CustomTextField(
                 controller: _nameController,
-                hintText: 'enter your name ',
+                hintText: 'Enter your name ',
               ),
               SizedBox(height: 20),
               Text('Email'),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Enter your email',
-                  hintStyle: TextStyle(color: Color(0xff8897Ad)),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff8897Ad)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff1d4ae9)),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff8897Ad)),
-                  ),
-                ),
+              CustomTextField(
+                controller: _emailController,
+                hintText: 'Enter your email',
               ),
               SizedBox(height: 20),
               Text('Password'),
               SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Please enter your password',
-                  hintStyle: TextStyle(color: Color(0xff8897Ad)),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff8897Ad)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff1d4ae9)),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Colors.red),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide(color: Color(0xff8897Ad)),
-                  ),
-                ),
+              CustomTextField(
+                hintText: 'Please enter your password',
+                isPassword: true,
               ),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     hintText: 'Please enter your password',
+              //     hintStyle: TextStyle(color: Color(0xff8897Ad)),
+              //     enabledBorder: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderSide: BorderSide(color: Color(0xff8897Ad)),
+              //     ),
+              //     focusedBorder: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderSide: BorderSide(color: Color(0xff1d4ae9)),
+              //     ),
+              //     errorBorder: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderSide: BorderSide(color: Colors.red),
+              //     ),
+              //     focusedErrorBorder: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderSide: BorderSide(color: Colors.red),
+              //     ),
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //       borderSide: BorderSide(color: Color(0xff8897Ad)),
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 20),
               Text('Confirm Password'),
               SizedBox(height: 10),
@@ -146,22 +130,30 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                height: 40,
-                child: Center(
-                  child: Text(
-                    'Sign Up',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      // color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 40,
+                  child: Center(
+                    child: Text(
+                      'Sign Up',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        // color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.blueAccent,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.blueAccent,
+                  ),
                 ),
               ),
               SizedBox(height: 24),
@@ -186,16 +178,39 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 }
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, this.controller, this.hintText});
+class CustomTextField extends StatefulWidget {
+  CustomTextField({
+    super.key,
+    this.controller,
+    this.hintText,
+    this.isPassword = false,
+  });
   final TextEditingController? controller;
   final String? hintText;
+  final bool isPassword;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  bool hidePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
+      obscureText: hidePassword,
+      controller: widget.controller,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: () {
+                  setState(() => hidePassword = !hidePassword);
+                },
+                child: Icon(Icons.visibility_off),
+              )
+            : Icon(Icons.visibility),
         hintStyle: TextStyle(color: Color(0xff8897Ad)),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
