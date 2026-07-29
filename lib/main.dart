@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:taski/screens/login_screen.dart';
-import 'package:taski/screens/onboarding_screen.dart';
-import 'package:taski/screens/signup_screen.dart';
-// import 'package:planner/screens/login_screen.dart';
-// import 'package:planner/screens/onboarding_screen.dart';
-// import 'package:planner/screens/signup_screen.dart';
+import 'package:planner/screens/login_screen.dart';
+import 'package:planner/screens/onboarding_screen.dart';
+import 'package:planner/screens/splash_screen.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -17,9 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Taski App',
+      title: 'Planner',
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      home: const OnboardingScreen(),
     );
   }
 }
