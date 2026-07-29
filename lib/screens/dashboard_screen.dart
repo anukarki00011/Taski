@@ -25,6 +25,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           currentIndex = index;
+          if (index == 1) {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              useSafeArea: true,
+              builder: (context) {
+                return DraggableScrollableSheet(
+                  initialChildSize: 0.90,
+                  maxChildSize: 0.95,
+                  minChildSize: 0.5,
+                  expand: false,
+                  builder: (context, scrollController) {
+                    return AddTaskSheet();
+                  },
+                );
+              },
+            );
+          }
+          //draggablescrolllabelsheet
           setState(() {});
         },
         currentIndex: currentIndex,
