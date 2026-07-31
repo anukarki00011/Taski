@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_constants.dart';
+import '../providers/task_provider.dart';
+import '../models/task_model.dart';
 
 class DeleteTaskElement extends StatelessWidget {
-  const DeleteTaskElement({super.key});
-
+  const DeleteTaskElement({required this.task, super.key});
+  final TaskModel task;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,12 +26,14 @@ class DeleteTaskElement extends StatelessWidget {
           // ),
           SizedBox(width: 16),
           Text(
-            'The task is done',
+            task.title,
             style: kBodyTextStyle.copyWith(color: AppColors.textColor02),
           ),
           Spacer(),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.read<TaskProvider>().deleteTasks(task.id);
+            },
             child: Icon(Icons.delete, color: Colors.red),
           ),
         ],
